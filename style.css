@@ -57,7 +57,7 @@ body {
     background-color: rgb(233, 233, 233);
     padding: 1rem;
     gap: 1rem;
-    width: 500px;
+    width: fit-content;
     box-shadow: 15px 15px rgb(73, 191, 140);
     display: grid;
     grid-template-columns: repeat(4, 1fr);
