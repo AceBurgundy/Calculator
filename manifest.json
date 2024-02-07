@@ -1,0 +1,7 @@
+{
+    "display": "standalone",
+    "orientation": "portrait",
+    "start_url": "/",
+    "theme_color": "#49bf8c",
+    "background_color": "#add15e"
+}

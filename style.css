@@ -4,7 +4,7 @@ body {
     display: grid;
     place-items: center;
     height: 100vh;
-    background-color: rgb(173, 209, 94);
+    background-color: #add15e;
     font-family: 'Raleway', sans-serif;
     box-sizing: border-box;
 }
@@ -85,7 +85,7 @@ button {
     font-size: 1.5rem;
     cursor: pointer;
     border: 1px solid gray;
-    box-shadow: 10px 10px rgb(73, 191, 140);
+    box-shadow: 10px 10px #49bf8c;
     transition: 200ms ease;
 }
 
