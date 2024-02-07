@@ -77,3 +77,21 @@ function calculate(firstOperand, secondOperand, operator) {
 
   return result;
 }
+
+/**
+ * Checks if the screen diagonal display is less than 7 inches.
+ * @returns {boolean} True if screen diagonal is less than 7 inches, otherwise false.
+ */
+function checkScreenSize() {
+  const screenWidthInInches = window.screen.width / window.devicePixelRatio;
+  const screenHeightInInches = window.screen.height / window.devicePixelRatio;
+
+  const screenSizeInches = Math.sqrt(Math.pow(screenWidthInInches, 2) + Math.pow(screenHeightInInches, 2));
+  return screenSizeInches < 7;
+}
+
+if (checkScreenSize()) {
+  screen.orientation.lock('portrait').catch(error => {
+      console.error('Failed to lock screen orientation:', error);
+  });
+}
