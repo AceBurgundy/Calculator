@@ -103,12 +103,13 @@ button:active {
         padding: 0;
         margin: 0;
         overflow: hidden;
+        height: 100dvh;
     }
 
     #calculator {
         width: 100vw;
         box-sizing: border-box;
-        height: 100dvh;
+        height: 100%;
         gap: 1rem;
         padding: 10px;
         grid-template-areas:
