@@ -108,7 +108,7 @@ button:active {
     #calculator {
         width: 100vw;
         box-sizing: border-box;
-        height: 100vh;
+        height: 100dvh;
         gap: 1rem;
         padding: 10px;
         grid-template-areas:
