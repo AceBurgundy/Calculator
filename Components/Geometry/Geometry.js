@@ -154,7 +154,7 @@ export default class Geometry extends Component {
         solveFunction(...functionArugments);
       }
 
-      select.onclick = ({target}) => {
+      select.onchange = ({target}) => {
         toast(target.value);
 
         switch (target.value) {
