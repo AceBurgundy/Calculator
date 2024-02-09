@@ -25,6 +25,7 @@ export default class Geometry extends Component {
     super();
 
     this.field = field;
+    let selectedShape = '';
 
     let shapes = {
       square: 'Square',
@@ -95,7 +96,7 @@ export default class Geometry extends Component {
     const geometryCalculatorFormId = 'geometry-calculator-form';
 
     this.scripts = () => {
-      const page = document.getElementById(pageId);
+      const select = document.getElementById(selectId);
       const geometryCalculatorForm = document.getElementById(geometryCalculatorFormId);
       const geometryCalculator = document.getElementById(geometryCalculatorId);
       const geometryResult = document.getElementById(geometryResultId);
@@ -129,7 +130,6 @@ export default class Geometry extends Component {
         };
 
         const selectedShape = geometryCalculatorForm.dataset.shape;
-        console.log(selectedShape);
         const solveFunction = shapeSolverMap[selectedShape];
 
         if (!solveFunction) {
@@ -155,12 +155,8 @@ export default class Geometry extends Component {
         solveFunction(...functionArugments);
       }
 
-      page.onclick = ({target}) => {
-        toast(`Called ${target.tagName}`);
-
-        if (target.tagName !== 'OPTION') {
-          return;
-        }
+      select.onclick = ({target}) => {
+        console.log(target.value);
 
         switch (target.value) {
 
@@ -283,6 +279,7 @@ export default class Geometry extends Component {
 
     const perimeterOrArea = this.field === Perimeter || this.field === Area;
     let firstShape = perimeterOrArea ? shapes.square : shapes.cube;
+    selectedShape = firstShape;
 
     this.template = /* html */`
       <div id="${pageId}">
