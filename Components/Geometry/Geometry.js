@@ -24,6 +24,8 @@ export default class Geometry extends Component {
   constructor(field) {
     super();
 
+    this.field = field;
+
     let shapes = {
       square: 'Square',
       rectangle: 'Rectangle',
@@ -36,7 +38,7 @@ export default class Geometry extends Component {
       polygon: 'Polygon'
     }
 
-    if (field === Volume) {
+    if (this.field === Volume) {
       shapes = {
         cube: 'Cube',
         rectangularPrism: 'Rectangular Prism',
@@ -93,7 +95,7 @@ export default class Geometry extends Component {
     const geometryCalculatorFormId = 'geometry-calculator-form';
 
     this.scripts = () => {
-      const shapeSelect = document.getElementById(selectId);
+      const page = document.getElementById(pageId);
       const geometryCalculatorForm = document.getElementById(geometryCalculatorFormId);
       const geometryCalculator = document.getElementById(geometryCalculatorId);
       const geometryResult = document.getElementById(geometryResultId);
@@ -146,143 +148,140 @@ export default class Geometry extends Component {
 
         const functionArugments = [formValues, geometryResult];
         if (requiresFieldArgument) {
-          functionArugments.push(field);
+          functionArugments.push(this.field);
         }
 
         console.log(solveFunction);
         solveFunction(...functionArugments);
       }
 
-      function drawFields(target) {
-          if (target.tagName !== 'OPTION') {
-            return;
-          }
+      page.onclick = ({target}) => {
+        toast('Called', target.tagName);
 
-          toast('Called');
+        if (target.tagName !== 'OPTION') {
+          return;
+        }
 
-          switch (target.value) {
+        switch (target.value) {
 
-            case shapes.polygon:
-              geometryCalculator.innerHTML = dimension('Side length');
-              geometryCalculator.innerHTML = dimension('Side Count');
-              setFormShape(shapes.polygon);
-              break;
+          case shapes.polygon:
+            geometryCalculator.innerHTML = dimension('Side length');
+            geometryCalculator.innerHTML = dimension('Side Count');
+            setFormShape(shapes.polygon);
+            break;
 
-            case shapes.cylinder:
-              setFormShape(shapes.cylinder);
+          case shapes.cylinder:
+            setFormShape(shapes.cylinder);
+            geometryCalculator.innerHTML = [
+              dimension('radius'),
+              this.field === Volume ? dimension('height') : '',
+            ].join('');
+            break;
+
+          case shapes.rectangularPrism:
+            setFormShape(shapes.rectangularPrism);
+            geometryCalculator.innerHTML = [
+              dimension('length'),
+              dimension('height'),
+              dimension('width'),
+            ].join('');
+            break;
+
+          case shapes.cone:
+            setFormShape(shapes.cone);
+            geometryCalculator.innerHTML = [
+              dimension('radius'),
+              dimension('height')
+            ].join();
+            break;
+
+          case shapes.sphere:
+            geometryCalculator.innerHTML = dimension('radius');
+            setFormShape(shapes.sphere);
+            break;
+
+          case shapes.circle:
+            geometryCalculator.innerHTML = dimension('radius');
+            setFormShape(shapes.circle);
+            break;
+
+          case shapes.square:
+            geometryCalculator.innerHTML = dimension('Side Length');
+            setFormShape(shapes.square);
+            break;
+
+          case shapes.cube:
+            geometryCalculator.innerHTML = dimension('Side Length');
+            setFormShape(shapes.cube);
+            break;
+
+            case shapes.rectangle:
+            setFormShape(shapes.rectangle);
+            geometryCalculator.innerHTML = [
+              dimension('Width'),
+              dimension('Length')
+            ].join('');
+            break;
+
+          case shapes.triangle:
+            setFormShape(shapes.triangle);
+            if (this.field === Perimeter) {
               geometryCalculator.innerHTML = [
-                dimension('radius'),
-                field === Volume ? dimension('height') : '',
-              ].join('');
-              break;
-
-            case shapes.rectangularPrism:
-              setFormShape(shapes.rectangularPrism);
-              geometryCalculator.innerHTML = [
-                dimension('length'),
-                dimension('height'),
-                dimension('width'),
-              ].join('');
-              break;
-
-            case shapes.cone:
-              setFormShape(shapes.cone);
-              geometryCalculator.innerHTML = [
-                dimension('radius'),
-                dimension('height')
-              ].join();
-              break;
-
-            case shapes.sphere:
-              geometryCalculator.innerHTML = dimension('radius');
-              setFormShape(shapes.sphere);
-              break;
-
-            case shapes.circle:
-              geometryCalculator.innerHTML = dimension('radius');
-              setFormShape(shapes.circle);
-              break;
-
-            case shapes.square:
-              geometryCalculator.innerHTML = dimension('Side Length');
-              setFormShape(shapes.square);
-              break;
-
-            case shapes.cube:
-              geometryCalculator.innerHTML = dimension('Side Length');
-              setFormShape(shapes.cube);
-              break;
-
-              case shapes.rectangle:
-              setFormShape(shapes.rectangle);
-              geometryCalculator.innerHTML = [
-                dimension('Width'),
-                dimension('Length')
-              ].join('');
-              break;
-
-            case shapes.triangle:
-              setFormShape(shapes.triangle);
-              if (field === Perimeter) {
-                geometryCalculator.innerHTML = [
-                  dimension('Side A'),
-                  dimension('Side B'),
-                  dimension('Side C')
-                ].join('');
-              } else {
-                geometryCalculator.innerHTML = [
-                  dimension('Base'),
-                  dimension('Height')
-                ].join('');
-              }
-              break;
-
-            case shapes.parallelogram:
-              setFormShape(shapes.parallelogram);
-              geometryCalculator.innerHTML = [
-                field === Volume || field === Area ? dimension('Height') : '',
-                field === Perimeter ? dimension('Side') : '',
-                field === Volume ? dimension('Depth') : '',
-                dimension('Base'),
-              ].join('');
-              break;
-
-            case shapes.trapezoid:
-              setFormShape(shapes.trapezoid);
-              geometryCalculator.innerHTML = [
-                dimension('Base one'),
-                dimension('Base two'),
                 dimension('Side A'),
-                dimension('Side B')
+                dimension('Side B'),
+                dimension('Side C')
               ].join('');
-              break;
-
-            case shapes.ellipsoid:
-              setFormShape(shapes.ellipsoid);
+            } else {
               geometryCalculator.innerHTML = [
-                dimension('Semi-Major Axis'),
-                dimension('Semi-Minor Axis')
+                dimension('Base'),
+                dimension('Height')
               ].join('');
-              break;
+            }
+            break;
 
-            case shapes.ellipse:
-              setFormShape(shapes.ellipse);
-              geometryCalculator.innerHTML = [
-                dimension('Major Axis'),
-                dimension('Minor Axis')
-              ].join('');
-              break;
+          case shapes.parallelogram:
+            setFormShape(shapes.parallelogram);
+            geometryCalculator.innerHTML = [
+              this.field === Volume || this.field === Area ? dimension('Height') : '',
+              this.field === Perimeter ? dimension('Side') : '',
+              this.field === Volume ? dimension('Depth') : '',
+              dimension('Base'),
+            ].join('');
+            break;
 
-            default:
-              break;
-          }
+          case shapes.trapezoid:
+            setFormShape(shapes.trapezoid);
+            geometryCalculator.innerHTML = [
+              dimension('Base one'),
+              dimension('Base two'),
+              dimension('Side A'),
+              dimension('Side B')
+            ].join('');
+            break;
+
+          case shapes.ellipsoid:
+            setFormShape(shapes.ellipsoid);
+            geometryCalculator.innerHTML = [
+              dimension('Semi-Major Axis'),
+              dimension('Semi-Minor Axis')
+            ].join('');
+            break;
+
+          case shapes.ellipse:
+            setFormShape(shapes.ellipse);
+            geometryCalculator.innerHTML = [
+              dimension('Major Axis'),
+              dimension('Minor Axis')
+            ].join('');
+            break;
+
+          default:
+            break;
+        }
       }
-
-      shapeSelect.onclick = ({target}) => drawFields(target);
-      shapeSelect.ontouchstart = ({target}) => drawFields(target);
     }
 
-    const perimeterOrArea = field === Perimeter || field === Area;
+    const perimeterOrArea = this.field === Perimeter || this.field === Area;
     let firstShape = perimeterOrArea ? shapes.square : shapes.cube;
 
     this.template = /* html */`
@@ -302,7 +301,7 @@ export default class Geometry extends Component {
             ${ dimension('Side Length') }
           </div>
           <button type="submit" class="input-wide button-submit">
-            Calculate ${field}
+            Calculate ${this.field}
           </button>
         </form>
       </div>
