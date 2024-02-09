@@ -160,6 +160,8 @@ export default class Geometry extends Component {
           return;
         }
 
+        toast('Called');
+
         switch (target.value) {
 
           case shapes.polygon:
