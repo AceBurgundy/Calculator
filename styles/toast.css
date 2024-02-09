@@ -1,11 +1,12 @@
 #toast-list {
     position: fixed;
-    bottom: 0;
-    left: 0;
+    bottom: 0%;
+    left: 0%;
     margin: 1rem;
     display: flex;
     flex-direction: column;
     gap: 5px;
+    z-index: 9999;
 }
 
 .toast {
@@ -16,4 +17,10 @@
     font-size: 0.9rem;
     border-radius: 20px;
     background-color: #49bf8c;
+}
+
+@media screen and (orientation: portrait) {
+    #toast-list {
+        bottom: 10%;
+    }
 }
