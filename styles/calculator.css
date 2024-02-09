@@ -1,13 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&display=swap');
-
-body {
-    display: grid;
-    place-items: center;
-    height: 100vh;
-    background-color: #add15e;
-    font-family: 'Raleway', sans-serif;
-    box-sizing: border-box;
-}
 
 #addition {
     grid-area: addition;
@@ -25,87 +15,84 @@ body {
     grid-area: division;
 }
 
-#equals {
+#calculator-equals {
     grid-area: equals;
 }
 
-#numbers {
+#calculator-numbers {
     grid-area: number;
 }
 
-#screen {
+#calculator-screen {
     grid-area: screen;
     color: white;
-    font-size: 6.5rem;
+    font-size: 5rem;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     padding: 0 1rem;
 }
 
-#numbers {
+#calculator-numbers {
     display: grid;
     gap: 1rem;
     grid-template-columns: repeat(3, 1fr);
 }
 
-#screen {
+#calculator-screen {
     background-color: black;
 }
 
 #calculator {
-    background-color: rgb(233, 233, 233);
     padding: 1rem;
     gap: 1rem;
     width: fit-content;
-    box-shadow: 15px 15px rgb(73, 191, 140);
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    grid-template-areas: "screen   screen      screen         screen"
-                         "addition subtraction multiplication division"
-                         "number   number      number         equals"
-                         "number   number      number         equals"
-                         "number   number      number         equals"
-                         "number   number      number         equals";
+    grid-template-rows: repeat(6, 1fr);
+    grid-template-areas:
+        "screen   screen      screen         screen"
+        "addition subtraction multiplication division"
+        "number   number      number         equals"
+        "number   number      number         equals"
+        "number   number      number         equals"
+        "number   number      number         equals";
 }
 
-.basic-button {
-    height: 7rem;
+.calculator__button, .calculator__option {
+    height: 6rem;
+    width: 6rem;
+}
+
+.calculator__operator {
     width: 7rem;
+    height: 7rem;
 }
 
-.operation-button {
-    width: 8rem;
-    height: 8rem;
-}
-
-button {
+.calculator__operator,
+.calculator__button,
+.calculator__option,
+#calculator-equals {
     border-radius: 50%;
     font-size: 1.5rem;
     cursor: pointer;
     border: 1px solid gray;
-    box-shadow: 10px 10px #49bf8c;
+    box-shadow: 8px 8px #49bf8c;
     transition: 200ms ease;
 }
 
-button:active {
+.calculator__operator:active,
+.calculator__button:active,
+.calculator__option:active,
+#calculator-equals:active {
     box-shadow: 0px 0px;
 }
 
-#equals {
+#calculator-equals {
     border-radius: 20px;
 }
 
-
 @media screen and (orientation: portrait) {
-    body {
-        padding: 0;
-        margin: 0;
-        overflow: hidden;
-        height: 100dvh;
-    }
-
     #calculator {
         width: 100vw;
         box-sizing: border-box;
@@ -122,28 +109,23 @@ button:active {
         "number   number      number         equals";
     }
 
-    #screen {
+    #calculator-screen {
         border-radius: 5px;
     }
 
-    button {
+    .calculator__operator,
+    .calculator__button,
+    .calculator__option,
+    #calculator-equals {
+        height: 100%;
+        width: 100%;
         font-size: 1.5rem;
         border-radius: 0;
         box-shadow: 5px 5px rgb(73, 191, 140);
-        border-radius: 5px;
+        border-radius: 15px;
     }
 
-    .basic-button {
-        height: 100%;
-        width: 100%;
-    }
-
-    .operation-button {
-        width: 100%;
-        height: 100%;
-    }
-
-    #equals {
+    #calculator-equals {
         border-radius: 0;
     }
 }

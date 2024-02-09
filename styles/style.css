@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&display=swap');
+@import url('./navigation.css');
+@import url('./calculator.css');
+@import url('./geometry.css');
+@import url('./toast.css');
+
+svg {
+    width: 1.5rem;
+    height: 2rem;
+}
+
+* {
+    font-family: 'Raleway', sans-serif;
+    box-sizing: border-box;
+}
+
+button, select {
+    cursor: pointer;
+}
+
+body {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    background-color: #add15e;
+}
+
+input {
+    padding: 1rem;
+    background-color: inherit;
+    border: none;
+    border-bottom: 1px solid rgb(207, 207, 207);
+}
+
+#content {
+    background-color: rgb(233, 233, 233);
+    box-shadow: 10px 10px rgb(73, 191, 140);
+    height: 744px;
+    width: 462px;
+}
+
+#display {
+    height: 92%;
+}
+
+.input-wide {
+    padding: 1rem;
+    border: none;
+    font-size: 1.1rem;
+}
+
+.button-submit {
+    box-shadow: 5px 5px #49bf8c;
+}
+
+@media screen and (orientation: portrait) {
+    body {
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+        height: 100dvh;
+    }
+
+    input {
+        padding: 0.5rem;
+    }
+
+    #content {
+        height: 100%;
+        width: 100%;
+    }
+
+    .input-wide {
+        padding: 0.5rem;
+        font-size: 1rem;
+    }
+}
