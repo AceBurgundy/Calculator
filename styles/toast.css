@@ -18,9 +18,3 @@
     border-radius: 20px;
     background-color: #49bf8c;
 }
-
-@media screen and (orientation: portrait) {
-    #toast-list {
-        bottom: 10%;
-    }
-}
