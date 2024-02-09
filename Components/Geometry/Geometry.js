@@ -156,7 +156,7 @@ export default class Geometry extends Component {
       }
 
       page.onclick = ({target}) => {
-        toast('Called', target.tagName);
+        toast(`Called ${target.tagName}`);
 
         if (target.tagName !== 'OPTION') {
           return;
