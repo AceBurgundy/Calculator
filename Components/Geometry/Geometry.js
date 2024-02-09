@@ -151,12 +151,11 @@ export default class Geometry extends Component {
           functionArugments.push(this.field);
         }
 
-        console.log(solveFunction);
         solveFunction(...functionArugments);
       }
 
       select.onclick = ({target}) => {
-        console.log(target.value);
+        toast(target.value);
 
         switch (target.value) {
 
