@@ -155,10 +155,7 @@ export default class Geometry extends Component {
       }
 
       select.onchange = ({target}) => {
-        toast(target.value);
-
         switch (target.value) {
-
           case shapes.polygon:
             geometryCalculator.innerHTML = dimension('Side length');
             geometryCalculator.innerHTML = dimension('Side Count');
