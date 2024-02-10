@@ -18,6 +18,9 @@ export default class Navigation extends Component {
       const navigation = document.getElementById('navigation');
       const display = document.getElementById('display');
 
+      navigation.children[0].firstElementChild.setAttribute('fill', '#05976b');
+      navigation.children[0].classList.add('active');
+
       navigation.onclick = ({target}) => {
         if (!target.dataset.page) {
           return;
