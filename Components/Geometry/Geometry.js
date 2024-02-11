@@ -24,9 +24,6 @@ export default class Geometry extends Component {
   constructor(field) {
     super();
 
-    this.field = field;
-    let selectedShape = '';
-
     let shapes = {
       square: 'Square',
       rectangle: 'Rectangle',
@@ -39,7 +36,7 @@ export default class Geometry extends Component {
       polygon: 'Polygon'
     }
 
-    if (this.field === Volume) {
+    if (field === Volume) {
       shapes = {
         cube: 'Cube',
         rectangularPrism: 'Rectangular Prism',
@@ -148,7 +145,7 @@ export default class Geometry extends Component {
 
         const functionArugments = [formValues, geometryResult];
         if (requiresFieldArgument) {
-          functionArugments.push(this.field);
+          functionArugments.push(field);
         }
 
         solveFunction(...functionArugments);
@@ -166,7 +163,7 @@ export default class Geometry extends Component {
             setFormShape(shapes.cylinder);
             geometryCalculator.innerHTML = [
               dimension('radius'),
-              this.field === Volume ? dimension('height') : '',
+              field === Volume ? dimension('height') : '',
             ].join('');
             break;
 
@@ -217,7 +214,7 @@ export default class Geometry extends Component {
 
           case shapes.triangle:
             setFormShape(shapes.triangle);
-            if (this.field === Perimeter) {
+            if (field === Perimeter) {
               geometryCalculator.innerHTML = [
                 dimension('Side A'),
                 dimension('Side B'),
@@ -234,9 +231,9 @@ export default class Geometry extends Component {
           case shapes.parallelogram:
             setFormShape(shapes.parallelogram);
             geometryCalculator.innerHTML = [
-              this.field === Volume || this.field === Area ? dimension('Height') : '',
-              this.field === Perimeter ? dimension('Side') : '',
-              this.field === Volume ? dimension('Depth') : '',
+              field === Volume || field === Area ? dimension('Height') : '',
+              field === Perimeter ? dimension('Side') : '',
+              field === Volume ? dimension('Depth') : '',
               dimension('Base'),
             ].join('');
             break;
@@ -273,9 +270,8 @@ export default class Geometry extends Component {
       }
     }
 
-    const perimeterOrArea = this.field === Perimeter || this.field === Area;
+    const perimeterOrArea = field === Perimeter || field === Area;
     let firstShape = perimeterOrArea ? shapes.square : shapes.cube;
-    selectedShape = firstShape;
 
     this.template = /* html */`
       <div id="${pageId}">
@@ -294,7 +290,7 @@ export default class Geometry extends Component {
             ${ dimension('Side Length') }
           </div>
           <button type="submit" class="input-wide button-submit">
-            Calculate ${this.field}
+            Calculate ${field}
           </button>
         </form>
       </div>
