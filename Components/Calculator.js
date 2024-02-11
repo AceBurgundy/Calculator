@@ -8,6 +8,19 @@ export default class Calculator extends Component {
       const calculator = document.getElementById('calculator');
       const screen = document.getElementById('calculator-screen');
 
+      if (window.chrome) {
+        var buttons = document.querySelectorAll(".calculator__operator, .calculator__button, .calculator__option, #calculator-equals");
+
+        buttons.forEach(button => {
+          button.style.boxShadow = "6px 6px #49bf8c";
+
+          if (button.classList.contains("calculator__operator")) {
+            button.style.width = "6rem";
+            button.style.height = "6rem";
+          }
+        });
+      }
+
       let currentInput = '';
       let firstOperand = null;
       let operator = null;

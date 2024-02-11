@@ -78,7 +78,6 @@
     cursor: pointer;
     border: 1px solid gray;
     box-shadow: 8px 8px #49bf8c;
-    transition: 200ms ease;
 }
 
 .calculator__operator:active,
@@ -90,21 +89,6 @@
 
 #calculator-equals {
     border-radius: 20px;
-}
-
-/** Chrominum */
-@media screen and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
-    .calculator__operator {
-        width: 6rem;
-        height: 6rem;
-    }
-
-    .calculator__operator,
-    .calculator__button,
-    .calculator__option,
-    #calculator-equals {
-        box-shadow: 6px 6px #49bf8c;
-    }
 }
 
 @media screen and (orientation: portrait) {
